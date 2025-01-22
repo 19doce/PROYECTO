@@ -1,108 +1,215 @@
+*{margin:0 auto;
+  padding: 0;
+  list-style: none;
+  
+}
+
 /* Header general */
 .barranavegacion {
-    display: flex;
-    justify-content: space-between; /* Espacio entre las tres secciones */
-    align-items: center;
-    padding: 0 20px;
-    height: 60px;
-    border-bottom: 1px solid rgba(20, 22, 21, 0.1);
-    background-color: rgb(238, 235, 235); /* Ajusta el color si es necesario */
+  display: flex; /* Conservado: Organización en flexbox */
+  width: 100%;
+  justify-content: space-between; /* Original: Espacio entre las tres secciones */
+  justify-content: space-around; /* Cambiado: Distribuye los elementos uniformemente */
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  border-bottom: 1px solid rgba(20, 22, 21, 0.1);
+  background-color: rgb(238, 235, 235); /* Conservado: Ajusta el color si es necesario */
+  background-color: hsla(0, 9%, 85%, 0.514); /* Cambiado: Fondo más claro y translúcido */
+  position: fixed; /* Nuevo: Fija la barra en la parte superior */
+  top: 0; /* Nuevo: Mantiene la barra en la parte superior */
+  z-index: 1000; /* Nuevo: Asegura que esté por encima de otros elementos */
+  box-sizing: border-box;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Nuevo: Sombra para destacar la barra */
+}
+
+/* Logo */
+.icono {
+  margin: 20px; /* Conservado: Margen original */
+  margin: 0 25px; /* Cambiado: Ajuste del margen horizontal */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px; /* Conservado: Tamaño original del logo */
+  width: 25px; /* Cambiado: Logo más pequeño */
+  height: auto;
+}
+
+/* Lista de navegación */
+.menu {
+  display: flex;
+  gap: 30px; /* Conservado: Espacio entre los elementos de navegación */
+  gap: 150px; /* Cambiado: Espaciado más amplio entre elementos */
+  list-style: none;
+  margin: 0;
+  padding: 20;
+  justify-content: space-between; /* Original: Distribuye uniformemente */
+  justify-content: space-around; /* Cambiado: Mayor separación entre enlaces */
+}
+
+/* Enlaces del menú */
+.menus {
+  font-family: 'ABeeZee', sans-serif;
+  font-size: 14px; /* Conservado: Tamaño original */
+  font-size: 1rem; /* Cambiado: Tamaño ligeramente mayor */
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #141615; /* Conservado: Color original del texto */
+  color: #000; /* Cambiado: Texto en negro */
+  transition: color 0.3s; /* Conservado */
+}
+
+.menus:hover {
+  color: #007bff; /* Conservado: Color de hover */
+}
+
+/* Controles (Minions) */
+.minions {
+  display: flex;
+  align-items: center; /* Conservado */
+  align-items: flex-start; /* Cambiado: Alineación superior */
+  gap: 15px; /* Conservado: Espaciado entre los íconos */
+}
+.menu-toggle-label {
+  opacity: 0; /* Lo hace completamente transparente */
+  visibility: hidden; /* Evita la interacción con el elemento */
+  display: none; /* Alternativa para ocultar completamente */
+  cursor: pointer;
+}
+
+
+.minions img {
+  width: 25px; /* Conservado */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s; /* Conservado: Efecto de transición */
+}
+
+.minions img:hover {
+  transform: scale(1.1); /* Conservado: Efecto de hover */
+}
+
+/* Botón hamburguesa */
+.menu-checkbox {
+  display: none; /* Conservado: Oculta el checkbox por defecto */
+}
+
+.menu-toggle-label {
+  display: none; /* Conservado */
+  display: block; /* Cambiado: Aparece en pantallas pequeñas */
+  cursor: pointer;
+}
+
+.menu-toggle-label img {
+  width: 30px; /* Conservado */
+  height: auto;
+}
+
+/* Responsividad */
+@media (max-width: 1076px) {
+  .menu-toggle-label {        
+      position: center; /* Sigue posicionado respecto al contenedor */
+      top: 15px; /* Ajusta la posición desde el borde superior */
+      right: 22px; /* Cerca del borde derecho */
+      opacity: 1; /* Lo hace visible */
+      visibility: visible; /* Permite interacción */
+      display: block; /* Asegura que ocupe espacio */
   }
-  
-  /* Logo */
-  .icono {
-    margin: 20px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    width: 40px;
-    height: auto;
-  }
-  
-  /* Lista de navegación */
+}
+@media (max-width: 1086px) {
   .menu {
-    display: flex;
-    gap: 30px; /* Espacio entre los elementos de navegación */
-    list-style: none;
-    margin: 0;
-    padding: 20;
+      display: flex; /* Conservado */
+      flex-direction: column; /* Conservado: Disposición en columna */
+      position: center; /* Conservado */
+      top: 60px; /* Conservado */
+      right: 0; /* Conservado */
+      width: 100%; /* Conservado */
+      background-color: #ffffff; /* Conservado */
+      border: 1px solid #ddd; /* Conservado */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Conservado */
+      max-height: 0; /* Conservado */
+      opacity: 0; /* Conservado */
+      transition: max-height 0.3s ease, opacity 0.3s ease; /* Conservado */
   }
-  
-  .menus {
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 14px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #141615;
-    transition: color 0.3s;
+
+  .menu-checkbox:checked ~ .menu {
+      max-height: 300px; /* Conservado */
+      opacity: 1; /* Conservado */
   }
-  
-  .menus:hover {
-    color: #007bff; /* Color de hover */
+
+  .menu-toggle-label {
+      display: block; /* Conservado */
+      margin-left: 15px; /* Conservado */
+      margin-right: 200px; /* Conservado */
   }
-  
-  /* Controles */
-  .minions {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Espacio entre los íconos */
-  }
-  
-  .minions img {
-    width: 25px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .minions img:hover {
-    transform: scale(1.1); /* Efecto de hover */
-  }
-  
+}
 
 
+
+
+/* Hero Section */
 .destacado {
-    position: relative; /* Posiciona los elementos de forma relativa */
-    width: 100%; /* Ocupa todo el ancho disponible */
-    height: 100vh; /* Ocupa toda la altura visible del navegador */
-    display: flex; /* Usa flexbox para centrar el contenido */
-    justify-content: left; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    overflow: hidden; /* Esconde cualquier contenido que se salga del contenedor */
+  position: relative; /* Elementos relativos dentro de esta sección */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: 100vh; /* Ocupa toda la altura visible del navegador */
+  overflow: ; /* Oculta cualquier contenido que exceda los límites */
 }
 
 /* Imagen de fondo */
 .destacadoimg {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    height: 100%; /* Ocupa toda la altura del contenedor */
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
+  position: absolute; /* Para ocupar todo el contenedor */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: 100%; /* Ocupa toda la altura disponible */
+  object-fit: contain; /* Mantiene la proporción de la imagen */
 }
 
-/* Texto dentro del héroe */
+/* Texto dentro del Hero */
 .textodestacado {
-    position: absolute; /* Posiciona el texto sobre la imagen */
-    top: 20%; /* Mueve el texto hacia el centro verticalmente */
-    left: 20%; /* Mueve el texto hacia el centro horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta el centrado exacto */
-    text-align: center; /* Centra el texto horizontalmente */
-    color: white; /* Color del texto */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Agrega una sombra al texto para destacarlo sobre la imagen */
-    font-family: 'Abhaya Libre', serif; /* Fuente utilizada */
+  position: absolute;
+  bottom: 70%; /* Asegura que el texto quede al final */
+  left: 10%; /* Centra horizontalmente */
+  transform: translateX(-30%); /* Ajusta el centrado exacto */
+  text-align: left; /* Centra el texto horizontalmente */
+  color: white; /* Color del texto */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Sombra del texto */
+  font-family: 'Abhaya Libre', serif;
+  max-width: 90%; /* Limita el ancho del texto */
 }
 
-/* Estilo del título dentro del héroe */
+/* Estilo del título dentro del Hero */
 .textodestacado h1 {
-    font-size: 4rem; /* Tamaño del título */
-    margin: 0; /* Elimina los márgenes predeterminados */
+  font-size: 3rem; /* Tamaño del título en pantallas grandes */
+  margin: 0; /* Elimina márgenes */
 }
 
-/* Estilo del subtítulo dentro del héroe */
+/* Estilo del subtítulo dentro del Hero */
 .textodestacado p {
-    font-size: 1.5rem; /* Tamaño del subtítulo */
-    margin-top: 1rem; /* Espaciado superior del subtítulo */
+  font-size: 1.2rem; /* Tamaño del subtítulo */
+  margin-top: 0.5rem; /* Espaciado superior */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .destacadoimg {
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+  }
+  .textodestacado h1 {
+      font-size: 2rem; /* Reduce el tamaño del título en pantallas pequeñas */
+  }
+
+  .textodestacado p {
+      font-size: 1rem; /* Reduce el tamaño del subtítulo */
+  }
+
+  .textodestacado {
+      bottom: 5%; /* Ajusta la posición para pantallas pequeñas */
+      max-width: 100%; /* El texto ocupa todo el ancho disponible */
+  }
 }
 /* parrilla Section Styles */
 .parrila {
