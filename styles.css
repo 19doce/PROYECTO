@@ -152,13 +152,14 @@
 .destacado {
   position: relative; /* Elementos relativos dentro de esta sección */
   width: 100%; /* Ocupa todo el ancho disponible */
-  height: 100vh; /* Ocupa toda la altura visible del navegador */
-  margin-top: 5px;
-  z-index: 1;
+  height: 50vp; /* Ocupa toda la altura visible del navegador */
 
 }
 
 /* Imagen de fondo */
+.image-container {
+  display: flex;
+}
 .destacadoimg {
   position: relative; /* Para ocupar todo el contenedor */
   top: 0;
@@ -197,6 +198,9 @@
 
 /* Responsividad para pantallas más pequeñas */
 @media (max-width: 1086px) {
+  .destacado{
+    height: 20vh;
+  }
   .destacadoimg {
     object-fit: cover; /* Mantiene la proporción de la imagen */
     z-index: -2;
@@ -217,17 +221,22 @@
   }
 }
 /* parrilla Section Styles */
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
 .parrila {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns */
     grid-gap: 20px; /* Space between cards */
-    margin: 40px auto;
     padding: 60px;
     max-width: 2200px;
   }
   
   /* Individual Card Styles */
-  .ficha {
+    .ficha {
     background-color: #b3b2b2;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -241,7 +250,8 @@
   @media (max-width: 768px) {
     .parrila {
       grid-template-columns: 1fr;
-      }
+
+    }
     .red-image img{
       display: none;
       }}
