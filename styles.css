@@ -119,6 +119,7 @@
       display: block; /* Asegura que ocupe espacio */
   }
 }
+
 @media (max-width: 1086px) {
   .menu {
       display: flex; /* Conservado */
@@ -147,25 +148,24 @@
   }
 }
 
-
-
-
 /* Hero Section */
 .destacado {
   position: relative; /* Elementos relativos dentro de esta sección */
   width: 100%; /* Ocupa todo el ancho disponible */
   height: 100vh; /* Ocupa toda la altura visible del navegador */
-  overflow: ; /* Oculta cualquier contenido que exceda los límites */
+  margin-top: 5px;
+  z-index: 1;
+
 }
 
 /* Imagen de fondo */
 .destacadoimg {
-  position: absolute; /* Para ocupar todo el contenedor */
+  position: relative; /* Para ocupar todo el contenedor */
   top: 0;
   left: 0;
   width: 100%; /* Ocupa todo el ancho disponible */
-  height: 100%; /* Ocupa toda la altura disponible */
-  object-fit: contain; /* Mantiene la proporción de la imagen */
+  margin-top: 0;
+  object-fit: cover; /* Mantiene la proporción de la imagen */
 }
 
 /* Texto dentro del Hero */
@@ -179,6 +179,8 @@
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Sombra del texto */
   font-family: 'Abhaya Libre', serif;
   max-width: 90%; /* Limita el ancho del texto */
+  z-index: 2;
+
 }
 
 /* Estilo del título dentro del Hero */
@@ -194,9 +196,10 @@
 }
 
 /* Responsividad para pantallas más pequeñas */
-@media (max-width: 768px) {
+@media (max-width: 1086px) {
   .destacadoimg {
-    object-fit: contain; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    z-index: -2;
   }
   .textodestacado h1 {
       font-size: 2rem; /* Reduce el tamaño del título en pantallas pequeñas */
@@ -207,8 +210,10 @@
   }
 
   .textodestacado {
-      bottom: 5%; /* Ajusta la posición para pantallas pequeñas */
-      max-width: 100%; /* El texto ocupa todo el ancho disponible */
+      left: 50%;
+      bottom: 0; /* Ajusta la posición para pantallas pequeñas */
+      transform: translate(-50%, 0);
+      width: 100%; /* El texto ocupa todo el ancho disponible */
   }
 }
 /* parrilla Section Styles */
@@ -233,6 +238,13 @@
     align-items: flex-start;
     text-align: left;
   }
+  @media (max-width: 768px) {
+    .parrila {
+      grid-template-columns: 1fr;
+      }
+    .red-image img{
+      display: none;
+      }}
   
   /* Header (Title + Subtitle) */
   .encabezado {
@@ -324,7 +336,7 @@
   position: relative; /* Permite posicionar contenido relativo al contenedor */
   width: 100%; /* Ocupa todo el ancho */
   height: 100vh; /* Ocupa toda la altura de la ventana */
-  overflow: hidden; /* Oculta contenido que se salga del contenedor */
+  object-fit: contain;
 }
 
 /* Imagen de fondo */
@@ -340,8 +352,8 @@
 /* Contenedor de texto y botón */
 .overlay-content {
   position: absolute; /* Permite posicionar el texto sobre la imagen */
-  top: 50%; /* Centra verticalmente */
-  left: 10%; /* Centra horizontalmente */
+  top: 60%; /* Centra verticalmente */
+  left: 30%; /* Centra horizontalmente */
   transform: translate(-50%, -50%); /* Ajusta el centrado exacto */
   background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
   padding: 20px 30px; /* Espaciado interno */
@@ -377,7 +389,37 @@
   background: #007bff; /* Fondo azul */
   color: white; /* Texto blanco */
 }
+@media (max-width: 768px) {
+  .fullscreen-section {
+    height: 70vh; /* Reduce la altura en pantallas pequeñas */
+  }
 
+  .background-image {
+
+    width: 100%; /* Ajusta para que llene el ancho del contenedor */
+    height: 100%; /* Ajusta la altura automáticamente para mantener la proporción */
+    object-fit: contain; /* Asegura que no se recorte la imagen */
+    margin-top: 0;
+
+  }
+
+  .overlay-content {
+    position: absolute; /* Mantiene el texto sobre la imagen */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    max-width: 80%; /* Ajusta el ancho máximo en pantallas pequeñas */
+    color: white; /* Cambia el color del texto a blanco */
+  }
+
+  .overlay-content h2 {
+    font-size: 1rem; /* Reduce el tamaño del título */
+  }
+
+  .transparent-button {
+    font-size: 0.9rem; /* Reduce el tamaño del texto del botón */
+    padding: 10px 15px; /* Ajusta el espaciado interno */
+  }
+}
 /* Sección general del carrusel */
 .slick-list-section {
   overflow-x: auto; /* Habilita el scroll horizontal */
@@ -455,7 +497,7 @@
 /* Contenedor principal de la sección */
 .photo-text-section {
   position: relative;
-  width: 100%;
+  width: calc(100%-40px);
   height: 80vh; /* Ajusta la altura según tus necesidades */
   overflow: hidden; /* Oculta el contenido desbordado */
 }
@@ -464,43 +506,86 @@
 .photo-background {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen se ajuste al espacio sin deformarse */
-  position: absolute; /* Permite posicionar elementos encima de la imagen */
+  object-fit: cover; /* Llena el espacio sin deformarse */
+  position: absolute;
   top: 0;
   left: 0;
+  margin: 0 0 10px;
+  transition: all 0.3s ease; /* Transición suave para cambios en responsive */
 }
 
 /* Contenedor del texto */
 .text-overlay {
-  position: absolute; /* Coloca el texto encima de la imagen */
-  bottom: 30px; /* Ajusta la distancia desde la parte inferior */
-  left: 30px; /* Ajusta la distancia desde el borde izquierdo */
-  max-width: 500px; /* Limita el ancho del texto */
-  color: white; /* Color del texto */
-  z-index: 10; /* Asegura que el texto esté por encima de la imagen */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.219); /* Agrega sombra al texto */
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  max-width: 500px;
+  color: white;
+  z-index: 10;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.219);
+  transition: all 0.3s ease; /* Transición para ajustes en responsive */
 }
 
 /* Estilo del título */
 .section-title {
-  font-family: 'Arial', sans-serif; /* Cambia la fuente si lo deseas */
-  font-size: 3rem; /* Tamaño del título */
+  font-family: 'Arial', sans-serif;
+  font-size: 3rem; /* Tamaño original */
   font-weight: bold;
-  line-height: 1.2; /* Espaciado entre líneas */
-  margin: 0 0 10px; /* Margen inferior */
+  line-height: 1.2;
+  margin: 0 0 10px;
 }
 
 /* Estilo del subtítulo */
 .section-subtitle {
-  font-family: 'Arial', sans-serif; /* Cambia la fuente si lo deseas */
-  font-size: 1.2rem; /* Tamaño del subtítulo */
-  line-height: 1.5; /* Espaciado entre líneas */
-  font-weight: 400; /* Peso de la fuente */
-  margin: 0; /* Sin márgenes */
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem; /* Tamaño original */
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
 }
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  /* Contenedor principal */
+  .photo-text-section {
+    display: flex;
+    flex-direction: column; /* Cambia la disposición a columna */
+    align-items: center; /* Centra el contenido */
+    padding: 20px; /* Añade algo de espacio alrededor */
+    gap: 20px; /* Espaciado entre la imagen y el texto */
+  }
+
+  /* Imagen más pequeña */
+  .photo-background {
+    position: static; /* Cambia a flujo natural */
+    width: calc(100% -40px); /* Ocupa todo el ancho disponible */
+    height: auto; /* Ajusta la altura automáticamente */
+  }
+
+  /* Cuadro gris para el texto */
+  .text-overlay {
+    position: static; /* Ahora es parte del flujo natural */
+    background-color: #aaa6a6; /* Fondo gris claro */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    text-align: center; /* Centra el texto */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+
+  /* Texto reducido */
+  .section-title {
+    font-size: 2rem; /* Reduce el tamaño del título */
+  }
+
+  .section-subtitle {
+    font-size: 1rem; /* Reduce el tamaño del subtítulo */
+  }
+}
+
 /* Estilo general de la sección */
 .red-section {
-  width: 100%;
+  width: calc(100% - 40px);
   display: flex;
   justify-content: center; /* Centra el contenido horizontalmente */
   align-items: center; /* Alinea verticalmente */
@@ -669,7 +754,6 @@
 }
 
 .footer-input {
-  padding: 10px 20px;
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 20px;
@@ -768,6 +852,7 @@
 
 /* Responsividad */
 @media (max-width: 768px) {
+  
   .footer-bottom {
     flex-direction: column;
     align-items: center;
@@ -778,7 +863,8 @@
   }
 
   .footer-input {
-    width: 100%;
+    width: calc(100% - 20px);
+    padding: 10;
   }
 }
 
